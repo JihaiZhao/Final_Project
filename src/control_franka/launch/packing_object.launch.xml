@@ -1,0 +1,6 @@
+<launch>
+    <include file="$(find-pkg-share control_franka)/launch/open_franka.launch.xml"/>
+    <node pkg="control_franka" exec="move_cartesian" name="move_cartesian"/>
+    <node pkg="control_franka" exec="run" name="run"/>
+    <node pkg="control_franka" exec="delay_node" name="delay_node"/>
+</launch>

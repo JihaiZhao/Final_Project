@@ -18,7 +18,7 @@ mpl.rcParams['ytick.labelsize'] = 20
 mpl.rcParams['lines.markersize'] = 5
 mpl.rcParams['legend.fontsize'] = 15
 
-input_files = ['s2_after.csv', 's3_after.csv', 's4_after.csv', 's5_after.csv', 's6_after.csv', 's7_after.csv', 's8_after.csv']
+input_files = ['~/data/s2_after.csv', '~/data/s3_after.csv', '~/data/s4_after.csv', '~/data/s5_after.csv', '~/data/s6_after.csv', '~/data/s7_after.csv', '~/data/s8_after.csv']
 # input_files = ['s2_after.csv']
 
 

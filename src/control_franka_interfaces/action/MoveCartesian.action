@@ -1,0 +1,15 @@
+# Goal
+float64 spiral_radius
+int32 num_points
+bool start_outside
+float64 num_loops
+float64[] endpoint_x
+float64[] endpoint_y
+string moving_frame
+geometry_msgs/Quaternion tilt_ang
+---
+# Result
+bool status
+---
+# Feedback
+string stage
