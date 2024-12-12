@@ -82,15 +82,15 @@ class Move_cartesian(Node):
         startOre = currPose.pose.orientation
 
         endPoints = []
-        for i in range(len(req.endpoint_x)):
+        for i in range(len(req.endpoint_y)):
             endPoint = Point()
-            endPoint.x = req.endpoint_x[i]
+            endPoint.x = 0.5
             endPoint.y = req.endpoint_y[i]
-            endPoint.z = 0.2
+            endPoint.z = req.endpoint_z[i]
             endPoints.append(endPoint)
         
         # self.get_logger().info(f"End Points: {len(endPoints)}")
-        # self.get_logger().info(f"End Points: {endPoints[0].x}")
+        # self.get_logger().info(f"End Points: {endPoints[0].z}")
         
         # Calculating path
         feedback.stage = "Calculating path"
@@ -102,7 +102,7 @@ class Move_cartesian(Node):
                                          req.num_points,
                                          req.start_outside)
         
-        self.get_logger().info(f"WAY Points: {waypoints}")
+        # self.get_logger().info(f"WAY Points: {waypoints}")
         
         if self.save_csv:
             save_waypoints_csv(waypoints)
@@ -153,16 +153,16 @@ def get_waypoints(startPoint: Point,
     poseList = []
     for i in range(len(endPoints)):
         count = 0
-        dx = (endPoints[i].x - startPoint.x)/numPoints
         dy = (endPoints[i].y - startPoint.y)/numPoints
-        x_n = startPoint.x
+        dz = (endPoints[i].z - startPoint.z)/numPoints
         y_n = startPoint.y
+        z_n = startPoint.z
 
         # Create poses for each point along the spiral
         while count < numPoints:
-            x_n += dx
+            x_n = endPoints[i].x
             y_n += dy
-            z_n = startPoint.z
+            z_n += dz
 
             poseList.append(Pose(position=Point(x=x_n,
                                                 y=y_n,

@@ -46,7 +46,7 @@ class Run(Node):
         
         # self.timer = self.create_timer(0.1, self.timer_callback)
 
-        self.filename = '/home/jihai/Jihai/Final_Project/src/trajectory_data.csv'
+        self.filename = '/home/jihai/Jihai/Final_Project/src/trajectory_data_2.csv'
 
         # Initialize an empty list to store the data
         self.data = []
@@ -71,18 +71,29 @@ class Run(Node):
         # [-9.0/180*np.pi, 17.0/180*np.pi, -20.0/180*np.pi, -126.0/180*np.pi, 9.0/180*np.pi, 142.0/180*np.pi, 11.0/180*np.pi],
         # execute=True
         # ) 
-        # await self.delay_client.call_async(DelayTime.Request(time=10.0))
 
         # go to observe position
         goal1 = MoveCartesian.Goal(
-            num_points  = 100,
-            endpoint_x  = [row[1] for row in self.end_point],
+            num_points  = 1,
+            # endpoint_x  = [0.5],
             endpoint_y  = [row[0] for row in self.end_point],
+            endpoint_z  = [row[1] for row in self.end_point],
             start_outside=True,
             moving_frame="panda_hand_tcp",            
         )
+        # goal1 = MoveCartesian.Goal(
+        #     num_points  = 1,
+        #     endpoint_x  = [0.5],
+        #     endpoint_y  = [0.0],
+        #     endpoint_z  = [0.2],
+        #     start_outside=True,
+        #     moving_frame="panda_hand_tcp",            
+        # )
+        
         result = await self.action_client_move_cartesian.send_goal_async(goal1)
         await result.get_result_async()
+        
+        await self.delay_client.call_async(DelayTime.Request(time=10.0))
         
         self.start = False
 

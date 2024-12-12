@@ -18,8 +18,11 @@ mpl.rcParams['ytick.labelsize'] = 20
 mpl.rcParams['lines.markersize'] = 5
 mpl.rcParams['legend.fontsize'] = 15
 
-input_files = ['~/data/s2_after.csv', '~/data/s3_after.csv', '~/data/s4_after.csv', '~/data/s5_after.csv', '~/data/s6_after.csv', '~/data/s7_after.csv', '~/data/s8_after.csv']
-# input_files = ['s2_after.csv']
+# input_files = ['~/data/s2_after.csv', '~/data/s3_after.csv', '~/data/s4_after.csv', '~/data/s5_after.csv', '~/data/s6_after.csv', '~/data/s7_after.csv', '~/data/s8_after.csv']
+
+# input_files = ['data_2/s1_after.csv', 'data_2/s2_after.csv', 'data_2/s3_after.csv', 'data_2/s4_after.csv', 'data_2/s5_after.csv', 'data_2/s6_after.csv', 'data_2/s7_after.csv', 'data_2/s8_after.csv']
+
+input_files = ['data_2/w_s1_after.csv','data_2/w_s2_after.csv', 'data_2/w_s3_after.csv', 'data_2/w_s4_after.csv']
 
 
 # Function to read first and last row and filter data
@@ -77,13 +80,13 @@ for input_file in input_files:
     plt.scatter(y_values, x_values, label=input_file, alpha=0.7)
 
 # Set the axis limits
-plt.xlim(-0.3, 0.3)
-plt.ylim(0.6, 0.2)
+plt.xlim(-1.0, 1.0)
+plt.ylim(-1.0, 1.0)
 
-# Set the grid with specific spacing
-plt.xticks([-0.3 + i * 0.05 for i in range(13)])  # Creates ticks from -0.3 to 0.3
-plt.yticks([i * 0.05 for i in range(4, 13)])  # Creates ticks from 0.25 to 0.8
-plt.grid(True)
+# # Set the grid with specific spacing
+# plt.xticks([-0.3 + i * 0.05 for i in range(13)])  # Creates ticks from -0.3 to 0.3
+# plt.yticks([i * 0.05 for i in range(4, 13)])  # Creates ticks from 0.25 to 0.8
+# plt.grid(True)
 
 # Set aspect ratio to equal to maintain the proportions
 plt.gca().set_aspect('auto')
@@ -93,10 +96,6 @@ plt.xlabel('Y')
 plt.ylabel('X')
 plt.title('Collected Data from Multiple Files')
 
-# Plot the extra point (example coordinates)
-obstacle_x = 0.0  # X-coordinate of the extra point
-obstacle_y = 0.3  # Y-coordinate of the extra point
-plt.scatter(obstacle_x, obstacle_y, color='red', label='obstacle', s=100)  # s is the size of the point
 plt.legend()  # Show legend with file names
 
 # Show the plot

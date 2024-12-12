@@ -5,6 +5,7 @@ bool start_outside
 float64 num_loops
 float64[] endpoint_x
 float64[] endpoint_y
+float64[] endpoint_z
 string moving_frame
 geometry_msgs/Quaternion tilt_ang
 ---

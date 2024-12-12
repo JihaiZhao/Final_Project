@@ -1,5 +1,6 @@
 import csv
 import matplotlib.pyplot as plt
+import os
 
 # Function to parse the Franka state data from the file
 def parse_franka_state(filename, desired_variables):
@@ -45,12 +46,12 @@ def save_to_csv(data, filename):
         writer = csv.writer(csvfile)
         
         # Write the header
-        writer.writerow(['O_T_EE_12', 'O_T_EE_13'])
+        writer.writerow(['O_T_EE_13','O_T_EE_14',])
         
         # Write the O_T_EE[12] and O_T_EE[13] values
         for entry in data['O_T_EE']:
-            if len(entry) > 13:
-                writer.writerow([entry[12], entry[13]])
+            if len(entry) > 14:
+                writer.writerow([entry[13], entry[14]])
 
 def compare_two_trajectory(desire_path, panda_path):
     # Initialize lists for x and y values for both trajectories
@@ -71,7 +72,7 @@ def compare_two_trajectory(desire_path, panda_path):
     with open(panda_path, mode='r') as file:
         reader = csv.reader(file)
         for i, row in enumerate(reader):
-            if i < 100:
+            if i < 80:
                 continue  # Skip the first 10 rows
             # Convert each value to float and append to respective lists
             x_panda.append(float(row[0]))
@@ -93,25 +94,25 @@ def compare_two_trajectory(desire_path, panda_path):
     plt.show()
 
 def main():
-    # # List of input files
-    # input_files = ['s2.csv', 's3.csv', 's4.csv', 's5.csv', 's6.csv', 's7.csv', 's8.csv']
-    # output_files = ['s2_after.csv', 's3_after.csv', 's4_after.csv', 's5_after.csv', 's6_after.csv', 's7_after.csv', 's8_after.csv']
+    # List of input files
+    input_files = ['data_3/s1.csv', 'data_3/s2.csv', 'data_3/s3.csv', 'data_3/w1.csv', 'data_3/w2.csv', 'data_3/w3.csv', 'data_3/w4.csv', 'data_3/w5.csv', 'data_3/w6.csv', 'data_3/w7.csv', 'data_3/w8.csv', 'data_3/w9.csv', 'data_3/w10.csv', 'data_3/w11.csv', 'data_3/w12.csv', 'data_3/w13.csv']
+    output_files = ['data_3/s1_after.csv', 'data_3/s2_after.csv', 'data_3/s3_after.csv', 'data_3/w1_after.csv', 'data_3/w2_after.csv', 'data_3/w3_after.csv', 'data_3/w4_after.csv', 'data_3/w5_after.csv', 'data_3/w6_after.csv', 'data_3/w7_after.csv', 'data_3/w8_after.csv', 'data_3/w9_after.csv', 'data_3/w10_after.csv', 'data_3/w11_after.csv', 'data_3/w12_after.csv', 'data_3/w13_after.csv']
 
-    # # List of variables we want to extract
-    # desired_variables = ['O_T_EE']
+    # List of variables we want to extract
+    desired_variables = ['O_T_EE']
 
-    # # Iterate through the list of input files and process each one
-    # for input_file, output_file in zip(input_files, output_files):
-    #     # Parse the input file and extract data
-    #     robot_data = parse_franka_state(input_file, desired_variables)
+    # Iterate through the list of input files and process each one
+    for input_file, output_file in zip(input_files, output_files):
+        # Parse the input file and extract data
+        robot_data = parse_franka_state(input_file, desired_variables)
 
-    #     # Save the extracted data to the output CSV file
-    #     save_to_csv(robot_data, output_file)
+        # Save the extracted data to the output CSV file
+        save_to_csv(robot_data, output_file)
 
-    #     print(f"Data saved to {output_file}")
+        print(f"Data saved to {output_file}")
         
-    desire_path = 'trajectory_data.csv'
-    panda_path = '/home/jihai/Jihai/Final_Project/franka_trajectory.csv'
-    compare_two_trajectory(desire_path, panda_path)
+    # desire_path = 'trajectory_data.csv'
+    # panda_path = '/home/jihai/Jihai/Final_Project/franka_trajectory.csv'
+    # compare_two_trajectory(desire_path, panda_path)
 
 main()
