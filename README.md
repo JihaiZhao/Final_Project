@@ -3,9 +3,7 @@
 ---
 ## Final Video
 
-<!-- ![](https://github.com/user-attachments/assets/520b7747-861c-40a6-80e3-4880118254c8) -->
-
-<video src="https://github.com/user-attachments/assets/e853d188-e805-459a-8b36-fede31b8429f" controls></video>
+<video src="https://github.com/user-attachments/assets/aea727c7-ccae-4171-87d1-23032c203890" controls></video>
 
 ## Overview
 
